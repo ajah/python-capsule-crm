@@ -74,10 +74,10 @@ class CapsuleCRM(object):
         }
         if self.method == 'get':
             kwargs['params'] = self.qs
+            kwargs['params'].update(self.explicit_qs)
         else:
             kwargs['data'] = json.dumps(self.qs)
             kwargs['params'] = self.explicit_qs
-
         return requests.request(*args, **kwargs)
 
     def get(self):
